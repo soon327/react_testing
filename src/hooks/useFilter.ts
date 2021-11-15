@@ -8,5 +8,5 @@ export function useFilter() {
   const filter = useRootState((state) => state.filter);
   const dispatch = useDispatch();
   const actions = useMemo(() => bindActionCreators(filterActions, dispatch), [dispatch]);
-  return [filter, actions.applyFilter];
+  return [filter, actions.applyFilter] as const;
 }

@@ -13,5 +13,5 @@ export function useFilteredTodos() {
   );
   const actions = useTodoActions();
 
-  return [filteredTodos, actions];
+  return [filteredTodos, actions] as const;
 }
