@@ -10,7 +10,7 @@ describe('useFilter', () => {
       todos: [],
     });
     const { result } = renderHook(() => useFilter(), { wrapper });
-    return { wrapper, store, result };
+    return { store, result };
   };
   it('returns filter', () => {
     const { result } = setup();
