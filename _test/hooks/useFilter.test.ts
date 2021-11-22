@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks';
-import prepareMockReduxWrapper from '../../src/lib/prepareMockReduxWrapper';
-import { filterActions } from '../../src/_reducer/filter';
-import { useFilter } from '../../src/hooks/useFilter';
+import prepareMockReduxWrapper from '@/lib/prepareMockReduxWrapper';
+import { filterActions } from '@/_reducer/filter';
+import { useFilter } from '@/hooks/useFilter';
 
 describe('useFilter', () => {
   const setup = () => {

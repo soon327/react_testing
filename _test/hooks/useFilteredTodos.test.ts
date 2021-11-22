@@ -1,8 +1,8 @@
 import { renderHook, act } from '@testing-library/react-hooks';
 import prepareReduxWrapper from '../../src/lib/prepareReduxWrapper';
-import { RootState } from '../../src/_reducer';
-import { filterActions } from '../../src/_reducer/filter';
-import { useFilteredTodos } from '../../src/hooks/useFilteredTodos';
+import { RootState } from '@/_reducer';
+import { filterActions } from '@/_reducer/filter';
+import { useFilteredTodos } from '@/hooks/useFilteredTodos';
 
 describe('useFilteredTodos', () => {
   const initialState: RootState = {
