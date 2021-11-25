@@ -19,15 +19,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "baseUrl": "./",
-    "paths": {
-      "@/*":["src/*"]
-    }
+    "jsx": "react-jsx"
   },
   "include": [
-    "src",
-    "craco.config.js"
-, "_test"  ],
-  "exclude": ["node_modules","**/node_modules/*"]
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*"
+  ]
 }

@@ -33,7 +33,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "jest --env=jsdom",
-    "eject": "react-scripts eject",
+    "eject": "craco eject",
     "babel": "babel-node"
   },
   "eslintConfig": {
