@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: checkout main branch
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       
       # strategy의 matrix.node-version 참조
       - name: Use Node.js ${{ matrix.node-version }}
