@@ -1,0 +1,46 @@
+
+name: PR Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 12.x,14.x,16.x ]
+
+    steps:
+      - name: checkout main branch
+      - uses: actions/checkout@v2
+      
+      # strategy의 matrix.node-version 참조
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+         node-version: ${{ matrix.node-version }}
+         
+      - name: npm cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            
+      - name: npm install
+        run: |
+          npm install
+          
+      - name: npm test
+        run: |
+          npm test
+      
+      
