@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Filter } from '../types/Filter';
 
 const filterSlice = createSlice({
-  name: 'fliter',
+  name: 'filter',
   initialState: 'ALL' as Filter,
   reducers: {
     applyFilter(state, action: PayloadAction<Filter>) {
