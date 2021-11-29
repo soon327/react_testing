@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: checkout main branch
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       
       # strategy의 matrix.node-version 참조
       - name: Use Node.js ${{ matrix.node-version }}
@@ -36,11 +36,29 @@ jobs:
             ${{ runner.os }}-node-
             
       - name: npm install
-        run: |
-          npm install
+        run: npm install
           
       - name: npm test
-        run: |
-          npm test
+        run: npm test
       
-      
+      # PR 시, test 실패할 경우 close 후 comment남기기
+      - name: if fail
+        uses: actions/github-script@v5.0.0
+        with:
+          github-token: ${{github.token}}
+          # 원하는 script 선언
+          script: |
+            const ref = "${{github.ref}}"
+            const pull_number = Number(ref.split("/")[2])
+            await github.pulls.createReview({
+              ...context.repo,
+              pull_number,
+              body:"테스트를 통과하지 못했습니다.😢 ",
+              event: "REQUEST_CHANGES"
+            })
+            await github.pulls.update({
+              ...context.repo,
+              pull_number,
+              state: "closed"
+            })
+        if: failure() 
