@@ -27,6 +27,6 @@ describe('TodoForm', () => {
     });
     fireEvent.submit(input);
     expect(input).toHaveValue(''); // 인풋이 비었는지 확인
-    expect(store.getActions().filter((action) => action.type === todosActions.add.type)).toHaveLength(0); // 액션이 디스패치 됐는지 확인
+    expect(store.getActions().filter((action) => action.type === todosActions.add.type)).toHaveLength(1); // 액션이 디스패치 됐는지 확인
   });
 });
