@@ -50,15 +50,24 @@ jobs:
           script: |
             const ref = "${{github.ref}}"
             const pull_number = Number(ref.split("/")[2])
-            await github.pulls.createReview({
+            await github.rest.pulls.createReview({
               ...context.repo,
               pull_number,
               body:"테스트를 통과하지 못했습니다.😢 ",
               event: "REQUEST_CHANGES"
             })
-            await github.pulls.update({
+            await github.rest.pulls.update({
               ...context.repo,
               pull_number,
               state: "closed"
             })
         if: failure() 
+        
+      - name: build result to slack
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{job.status}}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} 
+        if: always()
