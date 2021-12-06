@@ -7,15 +7,12 @@ on:
   pull_request:
     branches: [ main ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 12.x,14.x,16.x ]
+        node: [ 12,14,16 ]
 
     steps:
       - name: checkout main branch
@@ -45,7 +42,6 @@ jobs:
       - name: if fail
         uses: actions/github-script@v5.0.0
         with:
-          github-token: ${{github.token}}
           # 원하는 script 선언
           script: |
             const ref = "${{github.ref}}"
